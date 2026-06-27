@@ -1,0 +1,18 @@
+"""
+sample_doc.txt
+
+Sample document containing AI-related information used as the 
+knowledge base for the RAG Document Q&A chain.
+
+"""
+
+Artificial Intelligence (AI) is the simulation of human intelligence by machines.
+Machine Learning is a subset of AI that learns from data without being explicitly programmed.
+Deep Learning is a subset of Machine Learning that uses neural networks with many layers.
+Large Language Models (LLMs) are AI models trained on massive amounts of text data.
+LangChain is a framework for building applications powered by large language models.
+ChromaDB is a vector database used to store and search text by meaning rather than keywords.
+Groq is a company that provides extremely fast LLM inference through their API.
+RAG stands for Retrieval Augmented Generation - it combines search with AI generation.
+Agents are AI systems that can reason, plan, and use tools to complete tasks autonomously.
+The ReAct pattern combines reasoning and acting in AI agents for better performance.
