@@ -30,7 +30,6 @@ st.markdown("""
     color: white;
 }
 
-/* Hide streamlit default menu */
 #MainMenu {visibility: hidden;}
 footer {visibility: hidden;}
 
@@ -61,7 +60,6 @@ section[data-testid="stSidebar"] {
     100% { box-shadow: 0 0 20px rgba(124,58,237,0.4); }
 }
 
-/* Main title */
 .main-title {
     text-align: center;
     font-size: 2.5rem;
@@ -77,7 +75,6 @@ section[data-testid="stSidebar"] {
     margin-bottom: 1rem;
 }
 
-/* Chat bubble - bot */
 .chat-bubble-bot {
     background: linear-gradient(135deg, #1e1b4b, #312e81);
     border: 1px solid rgba(124,58,237,0.4);
@@ -89,7 +86,6 @@ section[data-testid="stSidebar"] {
     line-height: 1.6;
 }
 
-/* Chat bubble - user */
 .chat-bubble-user {
     background: linear-gradient(135deg, #7c3aed, #4f46e5);
     border-radius: 18px 0 18px 18px;
@@ -101,7 +97,6 @@ section[data-testid="stSidebar"] {
     text-align: right;
 }
 
-/* Bot icon */
 .bot-icon {
     width: 35px;
     height: 35px;
@@ -117,7 +112,6 @@ section[data-testid="stSidebar"] {
     flex-shrink: 0;
 }
 
-/* Input box */
 .stTextInput input {
     background: rgba(124,58,237,0.1) !important;
     border: 1px solid rgba(124,58,237,0.4) !important;
@@ -127,7 +121,6 @@ section[data-testid="stSidebar"] {
     padding: 0.75rem 1.25rem !important;
 }
 
-/* Button */
 .stButton button {
     background: linear-gradient(90deg, #7c3aed, #4f46e5) !important;
     color: white !important;
@@ -145,7 +138,6 @@ section[data-testid="stSidebar"] {
     transform: translateY(-1px) !important;
 }
 
-/* Cards */
 .card {
     background: rgba(124,58,237,0.08);
     border: 1px solid rgba(124,58,237,0.25);
@@ -154,7 +146,6 @@ section[data-testid="stSidebar"] {
     margin: 0.5rem 0;
 }
 
-/* Section title */
 .section-title {
     font-size: 1.1rem;
     font-weight: 700;
@@ -162,7 +153,6 @@ section[data-testid="stSidebar"] {
     margin: 1.25rem 0 0.75rem;
 }
 
-/* Subtopic tag */
 .subtopic-tag {
     display: inline-block;
     background: rgba(124,58,237,0.2);
@@ -174,7 +164,6 @@ section[data-testid="stSidebar"] {
     margin: 3px;
 }
 
-/* Metric card */
 .metric-card {
     background: linear-gradient(135deg, rgba(124,58,237,0.15), rgba(79,70,229,0.15));
     border: 1px solid rgba(124,58,237,0.3);
@@ -195,7 +184,6 @@ section[data-testid="stSidebar"] {
     margin-top: 4px;
 }
 
-/* Key point */
 .key-point {
     background: rgba(124,58,237,0.08);
     border-left: 3px solid #7c3aed;
@@ -206,7 +194,6 @@ section[data-testid="stSidebar"] {
     color: #d1d5db;
 }
 
-/* Citation */
 .citation {
     background: rgba(79,70,229,0.1);
     border: 1px solid rgba(79,70,229,0.3);
@@ -217,7 +204,6 @@ section[data-testid="stSidebar"] {
     color: #a78bfa;
 }
 
-/* Conclusion */
 .conclusion-box {
     background: linear-gradient(135deg, rgba(124,58,237,0.12), rgba(79,70,229,0.12));
     border: 1px solid rgba(124,58,237,0.35);
@@ -225,18 +211,6 @@ section[data-testid="stSidebar"] {
     padding: 1.25rem;
 }
 
-/* History item */
-.history-item {
-    background: rgba(124,58,237,0.08);
-    border: 1px solid rgba(124,58,237,0.2);
-    border-radius: 12px;
-    padding: 0.75rem 1rem;
-    margin: 0.4rem 0;
-    font-size: 0.85rem;
-    color: #c4b5fd;
-}
-
-/* Architecture step */
 .arch-step {
     background: rgba(124,58,237,0.1);
     border-left: 3px solid #7c3aed;
@@ -247,7 +221,6 @@ section[data-testid="stSidebar"] {
     color: #e2e8f0;
 }
 
-/* Expander */
 .streamlit-expanderHeader {
     background: rgba(124,58,237,0.1) !important;
     border-radius: 12px !important;
@@ -255,13 +228,11 @@ section[data-testid="stSidebar"] {
     color: white !important;
 }
 
-/* Progress bar */
 .stProgress > div > div {
     background: linear-gradient(90deg, #7c3aed, #4f46e5) !important;
     border-radius: 10px !important;
 }
 
-/* Divider */
 hr {
     border-color: rgba(124,58,237,0.2) !important;
 }
@@ -283,6 +254,9 @@ if "selected_chat" not in st.session_state:
 if "chat_messages" not in st.session_state:
     st.session_state.chat_messages = []
 
+if "is_new_chat" not in st.session_state:
+    st.session_state.is_new_chat = True
+
 
 # ============ SIDEBAR ============
 
@@ -298,15 +272,14 @@ with st.sidebar:
 
     st.divider()
 
-    # New chat button
     if st.button("✨ New Chat", key="new_chat"):
         st.session_state.selected_chat = None
         st.session_state.chat_messages = []
+        st.session_state.is_new_chat = True
         st.rerun()
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Sidebar tabs
     col_t1, col_t2 = st.columns(2)
 
     with col_t1:
@@ -319,7 +292,6 @@ with st.sidebar:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # History tab
     if st.session_state.sidebar_tab == "history":
 
         st.markdown("**📜 Research History**")
@@ -333,11 +305,11 @@ with st.sidebar:
 
         else:
 
-            # Clear all history button
             if st.button("🗑️ Clear All History", key="clear_all"):
                 st.session_state.history = []
                 st.session_state.selected_chat = None
                 st.session_state.chat_messages = []
+                st.session_state.is_new_chat = True
                 st.rerun()
 
             st.markdown("<br>", unsafe_allow_html=True)
@@ -362,7 +334,6 @@ with st.sidebar:
                             st.session_state.selected_chat = None
                         st.rerun()
 
-    # Architecture tab
     elif st.session_state.sidebar_tab == "architecture":
 
         st.markdown("**🏗 Agent Architecture**")
@@ -420,7 +391,6 @@ def display_report(plan, report):
     </div>
     """, unsafe_allow_html=True)
 
-    # Research Plan
     st.markdown('<div class="section-title">📋 Research Plan</div>', unsafe_allow_html=True)
 
     p1, p2 = st.columns(2)
@@ -446,7 +416,6 @@ def display_report(plan, report):
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Metrics
     st.markdown('<div class="section-title">📊 Report Overview</div>', unsafe_allow_html=True)
 
     m1, m2, m3 = st.columns(3)
@@ -478,7 +447,6 @@ def display_report(plan, report):
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Summary
     st.markdown(f"""
     <div class="card">
         <div style="color:#6b7280;font-size:0.78rem;margin-bottom:8px;">📝 SUMMARY</div>
@@ -488,7 +456,6 @@ def display_report(plan, report):
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Research Sections
     st.markdown('<div class="section-title">🔍 Research Sections</div>', unsafe_allow_html=True)
 
     for section in report.sections:
@@ -535,7 +502,6 @@ def display_report(plan, report):
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Conclusion
     st.markdown('<div class="section-title">✅ Conclusion</div>', unsafe_allow_html=True)
     st.markdown(f"""
     <div class="conclusion-box">
@@ -593,7 +559,6 @@ CONCLUSION
         mime="text/plain"
     )
 
-    # Bot closing bubble
     st.markdown(f"""
     <div style="display:flex;align-items:flex-start;margin-top:1.5rem;">
         <span class="bot-icon">🤖</span>
@@ -607,7 +572,6 @@ CONCLUSION
 
 # ============ MAIN AREA ============
 
-# If viewing a history chat
 if st.session_state.selected_chat is not None:
 
     idx = st.session_state.selected_chat
@@ -636,11 +600,11 @@ if st.session_state.selected_chat is not None:
     if st.button("✨ Start New Chat"):
         st.session_state.selected_chat = None
         st.session_state.chat_messages = []
+        st.session_state.is_new_chat = True
         st.rerun()
 
 else:
 
-    # Welcome header
     st.markdown("""
     <div style="text-align:center;padding:2rem 0 1rem;">
         <div style="font-size:4rem;">🤖</div>
@@ -681,7 +645,7 @@ else:
     st.markdown("<br>", unsafe_allow_html=True)
     st.divider()
 
-    # Show all chat messages this session
+    # Show all chat messages
     for msg in st.session_state.chat_messages:
 
         if msg["role"] == "user":
@@ -745,49 +709,52 @@ else:
 
     st.markdown("<br>", unsafe_allow_html=True)
 
-    # Input area — always visible
+    # Input area
     st.divider()
     st.markdown("### 💬 Ask Nova")
 
-    question = st.text_input(
-        "",
-        placeholder="Type your research question here...",
-        label_visibility="collapsed",
-        key="question_input"
-    )
+    with st.form(key="research_form", clear_on_submit=True):
 
-    b1, b2, b3 = st.columns([1, 2, 1])
-    with b2:
-        run_button = st.button("🚀 Start Research", type="primary")
+        question = st.text_input(
+            "",
+            placeholder="Type your research question and press Enter...",
+            label_visibility="collapsed"
+        )
 
-    # Handle button click
-    if run_button and question:
+        b1, b2, b3 = st.columns([1, 2, 1])
+        with b2:
+            run_button = st.form_submit_button(
+                "🚀 Start Research",
+                type="primary",
+                use_container_width=True
+            )
 
-        if len(question.strip()) < 3:
+    # Handle submit
+    if run_button:
+
+        if not question or len(question.strip()) < 3:
             st.session_state.chat_messages.append({
                 "role": "error",
                 "content": "Please type a proper research question! 😊"
             })
             st.rerun()
 
-        st.session_state.chat_messages.append({
-            "role": "user",
-            "content": question
-        })
+        already_processing = (
+            st.session_state.chat_messages
+            and st.session_state.chat_messages[-1]["role"] == "bot"
+            and "Let me research" in st.session_state.chat_messages[-1]["content"]
+        )
 
-        st.session_state.chat_messages.append({
-            "role": "bot",
-            "content": "Got it! Let me research that for you... 🧠"
-        })
-
-        st.rerun()
-
-    elif run_button and not question:
-        st.session_state.chat_messages.append({
-            "role": "error",
-            "content": "Please type a research question first! 😊"
-        })
-        st.rerun()
+        if not already_processing:
+            st.session_state.chat_messages.append({
+                "role": "user",
+                "content": question
+            })
+            st.session_state.chat_messages.append({
+                "role": "bot",
+                "content": "Got it! Let me research that for you... 🧠"
+            })
+            st.rerun()
 
     # Process research
     if (
@@ -817,11 +784,18 @@ else:
 
             st.session_state.chat_messages.pop()
 
-            st.session_state.history.append({
-                "question": question,
-                "report": report,
-                "plan": plan
-            })
+            # Save to history — update existing or create new
+            if st.session_state.history and not st.session_state.get("is_new_chat", True):
+                st.session_state.history[-1]["question"] = question
+                st.session_state.history[-1]["report"] = report
+                st.session_state.history[-1]["plan"] = plan
+            else:
+                st.session_state.history.append({
+                    "question": question,
+                    "report": report,
+                    "plan": plan
+                })
+                st.session_state.is_new_chat = False
 
             st.session_state.chat_messages.append({
                 "role": "report",
