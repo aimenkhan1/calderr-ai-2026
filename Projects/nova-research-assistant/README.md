@@ -95,6 +95,9 @@ streamlit run main.py
 
 The app opens at http://localhost:8501
 
+### 🚀 Live Demo
+https://nova-research-assistant.streamlit.app/
+
 ---
 
 ## ⌨️ Features
