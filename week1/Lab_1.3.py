@@ -32,9 +32,7 @@ client = Groq(
     api_key=os.getenv("GROQ_API_KEY")
 )
 
-# -----------------------------------
-# News Article
-# -----------------------------------
+#News Article to Summarize
 
 article = """
 Apple reported record quarterly earnings.
@@ -54,9 +52,7 @@ Apple announced a $110 billion share buyback.
 Earnings were higher than analysts expected.
 """
 
-# -----------------------------------
-# Five Different System Prompts
-# -----------------------------------
+#Five Different System Prompts for A/B Testing
 
 prompts = [
 
@@ -82,9 +78,7 @@ Tesla reported strong growth with revenue reaching $20 billion.
 Now summarize the given article."""
 ]
 
-# -----------------------------------
-# Run Every Prompt
-# -----------------------------------
+#Run the A/B Test
 
 count = 1
 
