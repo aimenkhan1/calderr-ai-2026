@@ -224,7 +224,7 @@ def run_code_safely(code: str, csv_filepath: str) -> ExecutionResult:
           f.write("warnings.filterwarnings('ignore')\n\n")
           f.write(code)
 
-        # Run the code in a subprocess with timeout
+        # we run the code in a subprocess with timeout
         result = subprocess.run(
             [sys.executable, code_file],
             capture_output=True,

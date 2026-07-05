@@ -38,10 +38,7 @@ CHART_STYLE = {
 ACCENT_COLORS = ["#7c6af7", "#a78bfa", "#6ee7b7", "#f472b6", "#fbbf24", "#60a5fa"]
 
 def parse_output_to_dict(output: str) -> dict:
-    """
-    Parse pandas text output into a label:value dict for charting.
-    Handles irregular spacing from pandas .to_string() output.
-    """
+
     result = {}
     lines  = output.strip().split("\n")
 
@@ -72,10 +69,7 @@ def parse_output_to_dict(output: str) -> dict:
 
 
 def generate_chart(output: str, chart_type: str, question: str, output_dir: str, csv_path: str = None) -> str | None:
-    """
-    Generate a chart from executor output.
-    Supports: bar, line, pie, histogram, scatter, heatmap, box
-    """
+
     if chart_type == "none":
         return None
 
@@ -123,8 +117,7 @@ def generate_chart(output: str, chart_type: str, question: str, output_dir: str,
                 import pandas as pd
                 df = pd.read_csv(csv_path)
 
-                # Find two numeric columns to plot
-                # Try to guess from question keywords
+      
                 numeric_cols = df.select_dtypes(include="number").columns.tolist()
 
                 x_col = None
