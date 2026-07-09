@@ -1,22 +1,82 @@
 [
-  {"question": "What pretrained model does RAG use as its generator?", "expected_keyword": "BART"},
-  {"question": "What is RAG's non-parametric memory built from?", "expected_keyword": "Wikipedia"},
-  {"question": "What retriever architecture does RAG use to find relevant passages?", "expected_keyword": "Dense Passage Retriever"},
-  {"question": "What are the two RAG model variants introduced in the paper?", "expected_keyword": "RAG-Token"},
-  {"question": "Which Wikipedia dump date is used to build RAG's document index?", "expected_keyword": "December 2018"},
-  {"question": "How many words are in each Wikipedia chunk used for the document index?", "expected_keyword": "100-word"},
-  {"question": "How many total document chunks make up RAG's Wikipedia index?", "expected_keyword": "21M"},
-  {"question": "What library and index type does RAG use for fast nearest neighbor search?", "expected_keyword": "FAISS"},
-  {"question": "What optimizer is used to train the RAG models?", "expected_keyword": "Adam"},
-  {"question": "Name one of the four open-domain QA datasets RAG is evaluated on.", "expected_keyword": "Natural Questions"},
-  {"question": "What dataset is used to evaluate abstractive question answering?", "expected_keyword": "MARCO"},
-  {"question": "What task does the FEVER dataset evaluate?", "expected_keyword": "FEVER"},
-  {"question": "What is one of the three classification labels used in FEVER?", "expected_keyword": "not enough info"},
-  {"question": "What automatic metric is used to evaluate Jeopardy question generation quality?", "expected_keyword": "Q-BLEU"},
-  {"question": "In what percentage of FEVER cases is RAG's single top-retrieved document a gold evidence article?", "expected_keyword": "71%"},
-  {"question": "In what percentage of FEVER cases does a gold evidence article appear in RAG's top 10 retrieved documents?", "expected_keyword": "90%"},
-  {"question": "What classic retrieval baseline outperforms RAG's dense retriever specifically on FEVER?", "expected_keyword": "BM25"},
-  {"question": "How many trainable parameters does the BART-large generator contribute to RAG?", "expected_keyword": "406M"},
-  {"question": "What two Wikipedia dump years are compared in the index hot-swapping experiment?", "expected_keyword": "2016"},
-  {"question": "What training framework and GPU type were used to train the RAG models?", "expected_keyword": "V100"}
+  {
+      "question": "What pretrained model does RAG use as its generator?", 
+      "expected_keyword": "BART"
+  },
+  {
+    "question": "What approach does the Health for All policy place at the center of health development?",
+    "expected_keyword": "human-centred"
+  },
+  {
+    "question": "What type of evidence should health policies and decisions be based on?",
+    "expected_keyword": "scientific"
+  },
+  {
+    "question": "What should governments emphasize when setting national health priorities?",
+    "expected_keyword": "consultative"
+  },
+  {
+    "question": "What epidemiological measure is considered when setting health priorities?",
+    "expected_keyword": "burden"
+  },
+  {
+    "question": "According to the document, what should guide the implementation of Health for All during the first two decades of the century?",
+    "expected_keyword": "targets"
+  },
+  {
+    "question": "Which disease is targeted for eradication or elimination by 2020?",
+    "expected_keyword": "polio"
+  },
+  {
+    "question": "By what year should safe drinking water, sanitation, and sufficient food be available to all?",
+    "expected_keyword": "2015"
+  },
+  {
+    "question": "By what year should all member states have policies consistent with the Health for All policy?",
+    "expected_keyword": "2005"
+  },
+  {
+    "question": "What technology will support global surveillance and alert systems for transnational health threats?",
+    "expected_keyword": "communications"
+  },
+  {
+    "question": "Which diseases are specifically mentioned as targets of global control programmes by 2020?",
+    "expected_keyword": "HIV"
+  },
+  {
+    "question": "What type of cooperation is required in addition to regional and national action to improve global health?",
+    "expected_keyword": "Global"
+  },
+  {
+    "question": "What international organization is responsible for guiding partners toward achieving Health for All?",
+    "expected_keyword": "WHO"
+  },
+  {
+    "question": "What is considered a primary component of Health for All implementation?",
+    "expected_keyword": "Partnerships"
+  },
+  {
+    "question": "What can governments create to encourage partnerships for health?",
+    "expected_keyword": "environment"
+  },
+  {
+    "question": "What management tool is described as indispensable for assessing programme performance?",
+    "expected_keyword": "Evaluation"
+  },
+  {
+    "question": "What should national and local targets reflect according to the evaluation section?",
+    "expected_keyword": "priorities"
+  },
+  {
+    "question": "What values should evaluation explicitly assess the incorporation of into health strategies?",
+    "expected_keyword": "HFA"
+  },
+  {
+    "question": "What should health policies aim to maximize across all sectors according to the healthy development policy?",
+    "expected_keyword": "health"
+  },
+  {
+    "question": "What should be strengthened to support evidence-based health policy and epidemiological research?",
+    "expected_keyword": "infrastructure"
+  }
 ]

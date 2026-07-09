@@ -56,7 +56,8 @@ def run_evaluation():
     qa_pairs = load_qa_pairs()
     print(f"Loaded {len(qa_pairs)} Q&A pairs for evaluation.\n")
 
-    docs = load_documents()
+    pdf_path = input("Enter the PDF path: ").strip().strip('"')
+    docs = load_documents(pdf_path)
     embeddings = get_embeddings()
 
     results = []  # list of dicts: chunk_size, k, hits, total, accuracy, time_sec
@@ -78,8 +79,7 @@ def run_evaluation():
             query_time = time.time() - t0
             accuracy = hits / total
 
-            print(f"  k={k:<3} -> {hits}/{total} correct ({accuracy:.0%})  "
-                  f"[build={build_time:.2f}s, {total} queries={query_time:.2f}s]")
+            print(f"  k={k:<3} -> {hits}/{total} correct ({accuracy:.0%}) "f"[build={build_time:.2f}s, {total} queries={query_time:.2f}s]")
 
             results.append({
                 "chunk_size": chunk_size,
@@ -100,12 +100,10 @@ def print_summary_table(results):
     print(f"{'Chunk Size':<12}{'k':<6}{'# Chunks':<10}{'Hits':<8}{'Accuracy':<10}")
     print()
     for r in results:
-        print(f"{r['chunk_size']:<12}{r['k']:<6}{r['num_chunks']:<10}"
-              f"{r['hits']}/{r['total']:<6}{r['accuracy']:.0%}")
+        print(f"{r['chunk_size']:<12}{r['k']:<6}{r['num_chunks']:<10}"f"{r['hits']}/{r['total']:<6}{r['accuracy']:.0%}")
 
     best = max(results, key=lambda r: r["accuracy"])
-    print(f"\nBest configuration: chunk_size={best['chunk_size']}, k={best['k']} "
-          f"-> {best['accuracy']:.0%} accuracy")
+    print(f"\nBest configuration: chunk_size={best['chunk_size']}, k={best['k']} " f"-> {best['accuracy']:.0%} accuracy")
 
 
 if __name__ == "__main__":
