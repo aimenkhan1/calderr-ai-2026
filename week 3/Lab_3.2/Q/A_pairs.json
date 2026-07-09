@@ -1,0 +1,22 @@
+[
+  {"question": "What pretrained model does RAG use as its generator?", "expected_keyword": "BART"},
+  {"question": "What is RAG's non-parametric memory built from?", "expected_keyword": "Wikipedia"},
+  {"question": "What retriever architecture does RAG use to find relevant passages?", "expected_keyword": "Dense Passage Retriever"},
+  {"question": "What are the two RAG model variants introduced in the paper?", "expected_keyword": "RAG-Token"},
+  {"question": "Which Wikipedia dump date is used to build RAG's document index?", "expected_keyword": "December 2018"},
+  {"question": "How many words are in each Wikipedia chunk used for the document index?", "expected_keyword": "100-word"},
+  {"question": "How many total document chunks make up RAG's Wikipedia index?", "expected_keyword": "21M"},
+  {"question": "What library and index type does RAG use for fast nearest neighbor search?", "expected_keyword": "FAISS"},
+  {"question": "What optimizer is used to train the RAG models?", "expected_keyword": "Adam"},
+  {"question": "Name one of the four open-domain QA datasets RAG is evaluated on.", "expected_keyword": "Natural Questions"},
+  {"question": "What dataset is used to evaluate abstractive question answering?", "expected_keyword": "MARCO"},
+  {"question": "What task does the FEVER dataset evaluate?", "expected_keyword": "FEVER"},
+  {"question": "What is one of the three classification labels used in FEVER?", "expected_keyword": "not enough info"},
+  {"question": "What automatic metric is used to evaluate Jeopardy question generation quality?", "expected_keyword": "Q-BLEU"},
+  {"question": "In what percentage of FEVER cases is RAG's single top-retrieved document a gold evidence article?", "expected_keyword": "71%"},
+  {"question": "In what percentage of FEVER cases does a gold evidence article appear in RAG's top 10 retrieved documents?", "expected_keyword": "90%"},
+  {"question": "What classic retrieval baseline outperforms RAG's dense retriever specifically on FEVER?", "expected_keyword": "BM25"},
+  {"question": "How many trainable parameters does the BART-large generator contribute to RAG?", "expected_keyword": "406M"},
+  {"question": "What two Wikipedia dump years are compared in the index hot-swapping experiment?", "expected_keyword": "2016"},
+  {"question": "What training framework and GPU type were used to train the RAG models?", "expected_keyword": "V100"}
+]
