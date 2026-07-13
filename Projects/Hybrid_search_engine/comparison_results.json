@@ -1,0 +1,22 @@
+{
+    "bm25": {
+        "hits": 25,
+        "total": 30,
+        "accuracy": 0.8333333333333334
+    },
+    "semantic": {
+        "hits": 27,
+        "total": 30,
+        "accuracy": 0.9
+    },
+    "hybrid": {
+        "hits": 27,
+        "total": 30,
+        "accuracy": 0.9
+    },
+    "hybrid_reranked": {
+        "hits": 27,
+        "total": 30,
+        "accuracy": 0.9
+    }
+}
