@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>RAG Evaluation Benchmark Report</title>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.umd.min.js"></script>
+<style>
+  body { font-family: -apple-system, Segoe UI, Roboto, sans-serif; max-width: 900px;
+         margin: 40px auto; padding: 0 20px; color: #1a1a2e; background: #fafafa; }
+  h1 { font-size: 1.8rem; margin-bottom: 4px; }
+  .subtitle { color: #666; margin-bottom: 32px; }
+  .card { background: white; border-radius: 12px; padding: 24px; margin-bottom: 24px;
+          box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+  table { width: 100%; border-collapse: collapse; margin-top: 12px; }
+  th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid #eee; }
+  th { background: #f5f5f7; font-size: 0.85rem; text-transform: uppercase; color: #666; }
+  tr:hover { background: #fafafa; }
+  .best { background: #eafbf0; font-weight: 600; }
+  .sig-yes { color: #c0392b; font-weight: 600; }
+  .sig-no { color: #7f8c8d; }
+  .badge { display: inline-block; padding: 3px 10px; border-radius: 12px;
+           font-size: 0.75rem; font-weight: 600; }
+  .badge-best { background: #2ecc71; color: white; }
+  canvas { max-height: 320px; }
+  .findings { line-height: 1.6; }
+  code { background: #f0f0f0; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }
+</style>
+</head>
+<body>
+
+<h1>RAG Evaluation Benchmark Report</h1>
+<div class="subtitle">Generated 2026-07-17 20:00 UTC · 8 configurations · 20 test questions per config</div>
+
+<div class="card">
+  <h2>Accuracy by Configuration</h2>
+  <canvas id="accuracyChart"></canvas>
+</div>
+
+<div class="card">
+  <h2>Leaderboard</h2>
+  <table>
+    <tr>
+      <th>Configuration</th>
+      <th>Chunk Size</th>
+      <th>Embedding Model</th>
+      <th>Retrieval Strategy</th>
+      <th>k</th>
+      <th>Hit@k Accuracy</th>
+      <th>95% CI</th>
+      <th>Chunks</th>
+      <th>Time</th>
+    </tr>
+    <tr class="best"><td>hybrid_bm25_semantic <span class="badge badge-best">BEST</span></td><td>512</td><td>all-MiniLM-L6-v2</td><td>hybrid</td><td>5</td><td>95%</td><td>[85%, 100%]</td><td>51</td><td>42.3s</td></tr>
+<tr><td>large_chunks_hybrid</td><td>1024</td><td>all-MiniLM-L6-v2</td><td>hybrid</td><td>5</td><td>95%</td><td>[85%, 100%]</td><td>32</td><td>50.4s</td></tr>
+<tr><td>small_chunks_hybrid</td><td>256</td><td>all-MiniLM-L6-v2</td><td>hybrid</td><td>5</td><td>95%</td><td>[85%, 100%]</td><td>99</td><td>64.0s</td></tr>
+<tr><td>bge_embedding_hybrid</td><td>512</td><td>BAAI/bge-small-en-v1.5</td><td>hybrid</td><td>5</td><td>95%</td><td>[85%, 100%]</td><td>51</td><td>216.9s</td></tr>
+<tr><td>hybrid_with_rerank</td><td>512</td><td>all-MiniLM-L6-v2</td><td>hybrid_rerank</td><td>5</td><td>95%</td><td>[85%, 100%]</td><td>51</td><td>593.1s</td></tr>
+<tr><td>bm25_only</td><td>512</td><td>all-MiniLM-L6-v2</td><td>bm25</td><td>5</td><td>90%</td><td>[77%, 100%]</td><td>51</td><td>11.9s</td></tr>
+<tr><td>semantic_only</td><td>512</td><td>all-MiniLM-L6-v2</td><td>semantic</td><td>5</td><td>90%</td><td>[77%, 100%]</td><td>51</td><td>46.9s</td></tr>
+<tr><td>bge_embedding_rerank</td><td>512</td><td>BAAI/bge-small-en-v1.5</td><td>hybrid_rerank</td><td>5</td><td>90%</td><td>[77%, 100%]</td><td>51</td><td>731.2s</td></tr>
+  </table>
+</div>
+
+<div class="card">
+  <h2>Statistical Significance</h2>
+  <p style="color:#666;font-size:0.9rem;">Paired t-test against the best-performing configuration
+  (<code>hybrid_bm25_semantic</code>), same test questions, same order. p &lt; 0.05 marked significant.</p>
+  <table>
+    <tr>
+      <th>Configuration</th>
+      <th>p-value</th>
+      <th>Significant?</th>
+    </tr>
+    <tr><td>bm25_only</td><td>0.3299</td><td class='sig-no'>No - within noise</td></tr>
+<tr><td>semantic_only</td><td>0.3299</td><td class='sig-no'>No - within noise</td></tr>
+<tr><td>large_chunks_hybrid</td><td>1.0</td><td class='sig-no'>No - within noise</td></tr>
+<tr><td>small_chunks_hybrid</td><td>1.0</td><td class='sig-no'>No - within noise</td></tr>
+<tr><td>bge_embedding_hybrid</td><td>1.0</td><td class='sig-no'>No - within noise</td></tr>
+<tr><td>hybrid_with_rerank</td><td>1.0</td><td class='sig-no'>No - within noise</td></tr>
+<tr><td>bge_embedding_rerank</td><td>0.3299</td><td class='sig-no'>No - within noise</td></tr>
+  </table>
+</div>
+
+<div class="card findings">
+  <h2>Findings</h2>
+  <p><strong>hybrid_bm25_semantic</strong> was the top-performing configuration, with 95% hit@k accuracy.</p>
+<p>Its advantage over <code>bm25_only, semantic_only, large_chunks_hybrid, small_chunks_hybrid, bge_embedding_hybrid, hybrid_with_rerank, bge_embedding_rerank</code> did <strong>not</strong> reach statistical significance - the difference could plausibly be due to chance given the sample size, and either configuration would be a defensible choice.</p>
+</div>
+
+<script>
+const ctx = document.getElementById('accuracyChart');
+new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: ['hybrid_bm25_semantic', 'large_chunks_hybrid', 'small_chunks_hybrid', 'bge_embedding_hybrid', 'hybrid_with_rerank', 'bm25_only', 'semantic_only', 'bge_embedding_rerank'],
+    datasets: [{
+      label: 'Hit@k Accuracy',
+      data: [0.95, 0.95, 0.95, 0.95, 0.95, 0.9, 0.9, 0.9],
+      backgroundColor: ['#2ecc71', '#95a5a6', '#95a5a6', '#95a5a6', '#95a5a6', '#95a5a6', '#95a5a6', '#95a5a6'],
+      borderRadius: 6,
+    }]
+  },
+  options: {
+    scales: { y: { beginAtZero: true, max: 1, ticks: { callback: v => (v*100)+'%' } } },
+    plugins: { legend: { display: false } }
+  }
+});
+</script>
+
+</body>
+</html>

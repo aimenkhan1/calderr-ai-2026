@@ -1,0 +1,63 @@
+
+#RAG Evaluation Benchmark — Configuration
+#Edit this file to test new configurations. No Python code changes needed.
+#This benchmark varies THREE dimensions, per the project spec:
+#1.chunk_size - how documents are split
+#2.embedding_model - which embedding model encodes chunks
+#3.retrieval_strategy- semantic / bm25 / hybrid / hybrid_rerank
+
+corpus: "Projects\rag_eval_benchmark\sample_paper.pdf"
+qa_pairs: "Projects\rag_eval_benchmark\q\a_pairs.json"
+max_workers: 3
+
+configurations:
+  # Retrieval strategy comparison (fixed chunk size + embedding model) 
+  - name: "semantic_only"
+    chunk_size: 512
+    k: 5
+    embedding_model: "all-MiniLM-L6-v2"
+    retrieval_strategy: "semantic"
+
+  - name: "bm25_only"
+    chunk_size: 512
+    k: 5
+    embedding_model: "all-MiniLM-L6-v2"
+    retrieval_strategy: "bm25"
+
+  - name: "hybrid_bm25_semantic"
+    chunk_size: 512
+    k: 5
+    embedding_model: "all-MiniLM-L6-v2"
+    retrieval_strategy: "hybrid"
+
+  - name: "hybrid_with_rerank"
+    chunk_size: 512
+    k: 5
+    embedding_model: "all-MiniLM-L6-v2"
+    retrieval_strategy: "hybrid_rerank"
+
+  #  Chunk size comparison (fixed embedding model + best strategy so far) 
+  - name: "small_chunks_hybrid"
+    chunk_size: 256
+    k: 5
+    embedding_model: "all-MiniLM-L6-v2"
+    retrieval_strategy: "hybrid"
+
+  - name: "large_chunks_hybrid"
+    chunk_size: 1024
+    k: 5
+    embedding_model: "all-MiniLM-L6-v2"
+    retrieval_strategy: "hybrid"
+
+  # Embedding model comparison (fixed chunk size + strategy) 
+  - name: "bge_embedding_hybrid"
+    chunk_size: 512
+    k: 5
+    embedding_model: "BAAI/bge-small-en-v1.5"
+    retrieval_strategy: "hybrid"
+
+  - name: "bge_embedding_rerank"
+    chunk_size: 512
+    k: 5
+    embedding_model: "BAAI/bge-small-en-v1.5"
+    retrieval_strategy: "hybrid_rerank"
