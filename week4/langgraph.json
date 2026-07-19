@@ -1,0 +1,6 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "doc_pipeline": "./Lab_4.1.py:graph"
+  }
+}
