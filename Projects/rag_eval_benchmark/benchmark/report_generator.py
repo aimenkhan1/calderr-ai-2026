@@ -182,7 +182,7 @@ def generate_report(analysis, output_path="docs/index.html"):
 
     import os
     os.makedirs(os.path.dirname(output_path) or ".", exist_ok=True)
-    with open(output_path, "w") as f:
+    with open(output_path, "w", encoding="utf-8") as f:
         f.write(html)
 
     return output_path
