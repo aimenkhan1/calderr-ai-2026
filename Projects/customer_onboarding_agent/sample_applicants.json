@@ -1,0 +1,44 @@
+[
+  {
+    "applicant_name": "Ayesha Raza",
+    "applicant_email": "ayesha.raza@smallco.com",
+    "company_name": "SmallCo Solutions",
+    "seats_requested": 5,
+    "monthly_value": 250.0
+  },
+  {
+    "applicant_name": "Bilal Ahmed",
+    "applicant_email": "bilal@midsizeltd.com",
+    "company_name": "MidSize Ltd",
+    "seats_requested": 25,
+    "monthly_value": 1200.0
+  },
+  {
+    "applicant_name": "Carla Mendes",
+    "applicant_email": "carla@bigcorp.com",
+    "company_name": "BigCorp Industries",
+    "seats_requested": 120,
+    "monthly_value": 8500.0
+  },
+  {
+    "applicant_name": "David Chen",
+    "applicant_email": "david.chen@enterprisex.com",
+    "company_name": "EnterpriseX",
+    "seats_requested": 200,
+    "monthly_value": 15000.0
+  },
+  {
+    "applicant_name": "Fatima Sheikh",
+    "applicant_email": "fatima@suspiciousinc.com",
+    "company_name": "Suspicious Inc",
+    "seats_requested": 3,
+    "monthly_value": 9000.0
+  },
+  {
+    "applicant_name": "",
+    "applicant_email": "invalid-email",
+    "company_name": "Broken Signup Co",
+    "seats_requested": 0,
+    "monthly_value": 0
+  }
+]
