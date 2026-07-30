@@ -26,7 +26,7 @@ MODEL = "llama-3.1-8b-instant"
 
 MAX_ITERATIONS = 2   
 
-gg
+
 # SUBGRAPH: one research thread (search -> summarize),Compiled once, invoked 3x concurrently inside parallel_research()
 
 class ThreadState(TypedDict):
