@@ -1,0 +1,6 @@
+{
+  "dependencies": ["."],
+  "graphs": {
+    "doc_pipeline": "./main.py:graph"
+  }
+}
