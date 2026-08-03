@@ -9,6 +9,7 @@ is a Pydantic "form" (a class with fixed fields) - if the form is filled
 in wrong, Python refuses to create it. 
 """
 
+
 from __future__ import annotations
 from enum import Enum
 from typing import List
@@ -188,7 +189,6 @@ class SynthesisAgent:
         if low_conf_sections:
             caveats.append(f"Low-confidence sections: {', '.join(low_conf_sections)}")
 
-        # short summary sentence at the top of the report
         summary = (
             f"Synthesized {len(findings.findings)} findings across "
             f"{len(by_type)} source categories for '{findings.topic}'. "
@@ -253,9 +253,9 @@ def demonstrate_validation_error():
 if __name__ == "__main__":
     report = run_pipeline("Acme Corp market position")
 
-    print("\n" + "=" * 60)
+    print()
     print("FINAL STRUCTURED REPORT")
-    print("=" * 60)
+    print()
     print(report.model_dump_json(indent=2))  
 
     demonstrate_validation_error()
