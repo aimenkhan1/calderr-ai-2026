@@ -1,0 +1,25 @@
+CRISPR Gene Editing: Mechanism and Applications
+
+CRISPR-Cas9 works by pairing a guide RNA sequence with a target DNA
+sequence, directing the Cas9 enzyme to cut both strands of DNA at a
+precise location. The cell's natural repair machinery then either
+disrupts the gene (non-homologous end joining, which introduces small
+insertions/deletions) or, if a repair template is supplied, inserts a
+specific new sequence (homology-directed repair).
+
+Newer variants address precision limitations of the original system.
+Base editing uses a modified Cas9 that nicks rather than fully cuts DNA,
+paired with an enzyme that directly converts one DNA base to another
+without creating a double-strand break, reducing unwanted insertions
+and deletions. Prime editing goes further, using a Cas9 nickase fused
+to a reverse transcriptase, allowing precise insertions, deletions, and
+all twelve possible base-to-base conversions without double-strand
+breaks or a separate repair template.
+
+Approved therapeutic applications include ex vivo treatments for sickle
+cell disease and beta-thalassemia, where a patient's own hematopoietic
+stem cells are edited outside the body and reinfused. In vivo editing
+(editing cells directly inside the patient) remains more challenging
+due to delivery constraints — lipid nanoparticles and viral vectors
+each have different tissue-targeting limitations and immunogenicity
+profiles.

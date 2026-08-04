@@ -1,0 +1,30 @@
+Qubit Modalities Compared
+
+Different physical implementations of qubits trade off differently
+across coherence time, gate fidelity, connectivity, and manufacturing
+maturity. Superconducting qubits, used by several leading commercial
+efforts, are fabricated using established semiconductor lithography
+techniques and operate at millikelvin temperatures. They offer fast gate
+speeds (tens of nanoseconds) but relatively short coherence times
+(microseconds), and fixed physical connectivity between neighboring
+qubits on the chip, which constrains which two-qubit operations can be
+performed directly.
+
+Trapped-ion qubits use individual charged atoms held in
+electromagnetic fields, manipulated with laser pulses. They offer
+significantly longer coherence times (seconds) and, because ions in a
+chain can all interact with each other via shared motional modes,
+effectively all-to-all connectivity within a chain — avoiding the
+routing overhead superconducting architectures face. The tradeoff is
+slower gate speeds (microseconds) and current scaling challenges in
+chaining together many ions while maintaining gate fidelity.
+
+Neutral atom arrays, a newer approach, use optical tweezers to arrange
+individual atoms in reconfigurable 2D or 3D patterns, offering both
+large qubit counts and flexible connectivity by physically rearranging
+atom positions between operations. Photonic qubits, encoding
+information in light, offer natural room-temperature operation and
+straightforward networking between separate processors via optical
+fiber, but face different challenges around deterministic single-photon
+generation and detection efficiency. No modality has yet demonstrated a
+clear overall advantage across all relevant metrics simultaneously.

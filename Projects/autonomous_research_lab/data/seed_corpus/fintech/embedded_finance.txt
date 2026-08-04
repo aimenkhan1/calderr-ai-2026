@@ -1,0 +1,28 @@
+Embedded Finance and Banking-as-a-Service
+
+Embedded finance refers to non-financial companies offering financial
+products directly within their own product experience — a ride-share
+app offering a debit card, or an e-commerce platform offering point-of-sale
+financing — rather than referring customers out to a separate bank or
+lender. This is technically enabled by Banking-as-a-Service (BaaS)
+providers, which offer API access to core banking functions (account
+creation, card issuance, payment processing, lending) that sit on top
+of a licensed bank's charter.
+
+The typical BaaS stack has three layers: a chartered bank holding the
+actual banking license and regulatory responsibility, a middleware/BaaS
+platform handling the technical integration and much of the compliance
+tooling, and the non-bank brand-facing company building the customer
+product. This layered structure lets non-bank companies launch
+financial products in months rather than pursuing their own banking
+charter, but it also means regulatory responsibility is distributed
+across multiple parties in ways regulators have scrutinized more closely
+following several high-profile BaaS platform failures.
+
+Regulatory attention has increasingly focused on whether chartered banks
+in these partnerships maintain adequate direct oversight of the
+non-bank companies operating under their charter, rather than
+delegating compliance monitoring entirely to the middleware layer.
+Several enforcement actions have specifically cited inadequate
+transaction monitoring and consumer protection oversight in
+bank-BaaS-fintech partnership structures as the root failure.

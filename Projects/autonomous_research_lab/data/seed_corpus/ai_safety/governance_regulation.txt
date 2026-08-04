@@ -1,0 +1,26 @@
+AI Governance and Regulation Landscape
+
+Government approaches to AI regulation broadly split into risk-tiered
+frameworks and use-case-specific rules. The EU AI Act classifies systems
+into unacceptable-risk (banned outright), high-risk (subject to
+conformity assessments, documentation, and human oversight
+requirements), limited-risk (transparency obligations, such as
+disclosing AI-generated content), and minimal-risk categories. High-risk
+classification applies to systems used in areas like employment
+screening, credit scoring, and critical infrastructure.
+
+In the United States, regulation has so far been more fragmented,
+combining sector-specific rules (e.g., FDA oversight of AI-based medical
+devices), state-level legislation, and voluntary frameworks like NIST's
+AI Risk Management Framework. Executive orders have directed federal
+agencies to develop safety testing requirements for the most capable
+frontier models, including mandatory reporting of training runs above
+certain compute thresholds.
+
+A central governance debate concerns evaluation and auditing: who
+verifies that a frontier model has been adequately tested for dangerous
+capabilities (bioweapons uplift, cyberweapon capability, autonomous
+replication) before deployment, and what standard of evidence should be
+required. Third-party auditing bodies and government-run AI safety
+institutes have emerged as one proposed answer, though their legal
+authority and technical capacity vary significantly by jurisdiction.

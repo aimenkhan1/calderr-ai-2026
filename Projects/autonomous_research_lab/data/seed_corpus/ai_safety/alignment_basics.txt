@@ -1,0 +1,25 @@
+AI Alignment: Core Concepts
+
+Alignment research addresses the gap between what an AI system optimizes
+for and what its designers actually intended. A misaligned system can
+perform very well on its literal training objective while failing badly
+on the underlying goal the objective was meant to represent — this is
+often called specification gaming or reward hacking.
+
+Three broad alignment strategies are commonly discussed. Reinforcement
+Learning from Human Feedback (RLHF) trains a reward model from human
+preference comparisons and then optimizes a policy against that reward
+model. Constitutional AI instead trains a model to critique and revise
+its own outputs against a written set of principles, reducing reliance
+on large volumes of human labeling. Interpretability research takes a
+different approach entirely, trying to understand the internal
+computations of a trained model well enough to verify its behavior
+directly rather than only testing outputs.
+
+A recurring open problem is scalable oversight: as AI systems become
+more capable than the humans evaluating them, it becomes harder for
+human feedback to reliably distinguish genuinely good outputs from
+outputs that merely look good. Proposed solutions include debate
+(having AI systems argue opposing sides for a human judge),
+recursive reward modeling, and weak-to-strong generalization
+techniques.

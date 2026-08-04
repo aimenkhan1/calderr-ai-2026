@@ -1,0 +1,27 @@
+Grid-Scale Battery Storage: Chemistries and Duration
+
+Lithium-ion remains the dominant grid-scale storage chemistry today,
+primarily using lithium iron phosphate (LFP) formulations for
+stationary storage rather than the nickel-manganese-cobalt (NMC)
+chemistries favored in electric vehicles, since LFP trades some energy
+density for lower cost, longer cycle life, and better thermal
+stability — properties that matter more for a stationary installation
+than for a vehicle where weight is critical.
+
+Lithium-ion battery storage is economically well-suited to short-duration
+applications (roughly 2-6 hours of discharge), covering daily solar
+generation mismatches and providing grid frequency regulation. Longer
+duration needs — multi-day storage to cover extended low-renewable-output
+periods — are generally considered uneconomical for lithium-ion at
+current costs, driving research into alternative "long-duration energy
+storage" (LDES) technologies.
+
+Leading LDES candidates include iron-air batteries (using reversible
+rusting of iron, targeting roughly 100-hour discharge duration at low
+per-kWh cost using cheap and abundant materials), flow batteries
+(storing energy in liquid electrolyte tanks, where duration is
+determined by tank size rather than the amount of power-conversion
+hardware, decoupling power and energy scaling), and various forms of
+thermal and gravitational storage. As of the mid-2020s, most LDES
+technologies remain at pilot or early-commercial scale, with lithium-ion
+still handling the large majority of deployed grid storage capacity.

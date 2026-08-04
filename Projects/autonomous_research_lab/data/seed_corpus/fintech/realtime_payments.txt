@@ -1,0 +1,28 @@
+Real-Time Payment Rails: Architecture Comparison
+
+Real-time payment systems settle transactions in seconds rather than
+the multi-day windows typical of legacy ACH (Automated Clearing House)
+transfers. In the United States, the FedNow Service (launched by the
+Federal Reserve) and The Clearing House's RTP network both provide
+real-time settlement between participating banks, using ISO 20022
+messaging standards that carry richer structured data than older
+payment message formats — enabling more automated reconciliation on the
+receiving end.
+
+Internationally, India's Unified Payments Interface (UPI) is often cited
+as the highest-volume real-time retail payment system, using a
+standardized addressing scheme (a "virtual payment address" rather than
+a raw bank account number) that lets any participating app interoperate
+with any bank, and processing tens of billions of transactions monthly.
+Brazil's Pix system, launched by the central bank, achieved similarly
+rapid adoption by mandating participation from banks above a certain
+size and offering zero-fee person-to-person transfers.
+
+A key architectural distinction is between systems built on a central
+bank's own real-time gross settlement (RTGS) infrastructure — where
+funds move directly between banks' central bank reserve accounts,
+carrying essentially zero counterparty risk — versus deferred net
+settlement systems, where a private operator nets transactions
+throughout the day and settles the net position periodically, which is
+operationally simpler but reintroduces some settlement risk between
+settlement windows.

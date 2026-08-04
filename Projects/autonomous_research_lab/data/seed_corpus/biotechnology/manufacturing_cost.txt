@@ -1,0 +1,25 @@
+Manufacturing and Cost Challenges in Cell and Gene Therapy
+
+Unlike traditional small-molecule drugs, many cell and gene therapies
+are manufactured on a per-patient (autologous) basis, which fundamentally
+changes the economics of production. Chimeric antigen receptor (CAR) T-cell
+therapies, for example, require extracting a patient's own T-cells,
+genetically modifying them to express a receptor targeting cancer
+cells, expanding them in culture, and reinfusing them — a process that
+can take several weeks and cannot be easily scaled the way batch
+manufacturing of a chemical drug can.
+
+Allogeneic ("off-the-shelf") approaches, which use donor cells modified
+to reduce immune rejection risk, are being developed specifically to
+address this scalability problem, potentially enabling one manufacturing
+batch to treat many patients. However, allogeneic approaches introduce
+new technical challenges, particularly around preventing both
+graft-versus-host disease and host-versus-graft rejection.
+
+The high manufacturing complexity contributes directly to list prices
+that can exceed $1 million per treatment for some approved gene
+therapies. This has driven experimentation with outcomes-based payment
+models, where insurers pay in installments contingent on the therapy
+continuing to show efficacy over time, rather than a single upfront
+payment — shifting some of the financial risk of therapy durability
+back toward manufacturers.

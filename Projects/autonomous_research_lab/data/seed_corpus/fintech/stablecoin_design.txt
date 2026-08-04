@@ -1,0 +1,29 @@
+Stablecoin Design and Reserve Models
+
+Stablecoins aim to maintain a fixed value, typically pegged 1:1 to a
+fiat currency, using one of three broad design approaches. Fiat-collateralized
+stablecoins hold reserves of cash and cash-equivalent assets (short-term
+government securities, commercial paper) in bank accounts or custodial
+accounts, redeemable on demand by authorized participants — the model
+used by the largest stablecoins by market capitalization. Crypto-collateralized
+stablecoins instead lock other cryptocurrencies as collateral, typically
+over-collateralized (e.g., $150 of crypto backing $100 of stablecoin) to
+absorb price volatility in the underlying collateral asset.
+
+Algorithmic stablecoins attempt to maintain the peg through automated
+supply expansion and contraction mechanisms rather than direct
+collateral backing, using arbitrage incentives to push the price back
+toward the peg. This category has a poor track record — a widely
+studied algorithmic stablecoin collapse in 2022 demonstrated how a
+loss-of-confidence spiral can overwhelm the arbitrage mechanism once
+the peg breaks meaningfully, since the same mechanism that is designed
+to restore the peg under normal conditions can accelerate the collapse
+once confidence is lost.
+
+Reserve composition and attestation quality have become the central
+regulatory focus for fiat-collateralized stablecoins specifically.
+Regulators have pushed for reserves to be held in highly liquid,
+short-duration assets rather than longer-dated or less liquid
+instruments, and for regular independent attestations (and eventually
+full audits) of reserve holdings, following incidents where reserve
+composition was less liquid or more opaque than users assumed.

@@ -1,0 +1,29 @@
+Quantum Error Correction and the Path to Fault Tolerance
+
+Physical qubits are noisy — gate operations, measurement, and even idle
+qubits accumulate errors far faster than classical bits do. Quantum
+error correction (QEC) addresses this by encoding one "logical" qubit
+across many physical qubits in a way that allows errors to be detected
+and corrected without directly measuring (and thus destroying) the
+quantum information being protected — a constraint that makes QEC
+fundamentally harder than classical error correction.
+
+The surface code is the most widely pursued QEC scheme for
+superconducting and related architectures, arranging physical qubits in
+a 2D lattice where neighboring qubits are repeatedly measured in a
+pattern that reveals error syndromes without collapsing the encoded
+logical state. Surface code error correction has a threshold property:
+below a certain physical error rate per gate, adding more physical
+qubits per logical qubit exponentially suppresses the logical error
+rate; above that threshold, adding more qubits makes things worse, not
+better — making crossing the threshold a critical experimental
+milestone.
+
+The overhead is substantial: published estimates suggest roughly 1,000
+or more physical qubits may be required per logical qubit at
+near-threshold error rates to achieve error rates low enough for
+commercially relevant algorithms (such as breaking RSA encryption or
+simulating industrially relevant molecules), meaning a fault-tolerant
+machine running practically useful algorithms may require millions of
+physical qubits — several orders of magnitude beyond current systems,
+which typically have on the order of hundreds of physical qubits.

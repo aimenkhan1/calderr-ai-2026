@@ -1,0 +1,38 @@
+SERVICES AGREEMENT
+
+This Services Agreement ("Agreement") is entered into between Acme Vendor Inc.
+("Vendor") and Client Co. ("Client").
+
+1. TERM AND TERMINATION
+This Agreement shall continue until terminated. Vendor may terminate this
+Agreement at any time, for any reason, upon 5 days written notice. Client may
+terminate only for material breach that remains uncured for 60 days after
+written notice.
+
+2. FEES AND PAYMENT
+Client shall pay Vendor's invoices within 15 days of receipt. Late payments
+accrue interest at 2% per month. Vendor may suspend all services immediately
+upon any late payment without further notice.
+
+3. DELIVERABLES
+Vendor shall deliver all specified deliverables within 30 days of the
+Effective Date. Time is of the essence. There is no cure period for missed
+deliverable deadlines.
+
+4. DATA HANDLING
+Vendor may process Client's customer data as necessary to perform the
+Services. Vendor may engage sub-processors without prior notice to Client.
+Vendor will use commercially reasonable efforts to protect Client data.
+
+5. LIABILITY
+Each party's liability under this Agreement is capped at the total fees
+paid in the preceding 12 months, except for breaches of confidentiality,
+which are uncapped. Each party agrees to indemnify the other for third-party
+claims arising from its own breach of this Agreement.
+
+6. CONFIDENTIALITY
+Each party shall keep the other's confidential information confidential
+for a period of 3 years following disclosure.
+
+7. GOVERNING LAW
+This Agreement is governed by the laws of the State of Delaware.

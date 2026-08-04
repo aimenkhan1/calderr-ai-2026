@@ -1,0 +1,23 @@
+Regulatory Pathways for Gene Therapies
+
+In the United States, gene therapies are regulated by the FDA's Center
+for Biologics Evaluation and Research (CBER) as biologics rather than
+small-molecule drugs, following a distinct approval pathway. Products
+typically require an Investigational New Drug (IND) application before
+human trials, followed by staged Phase 1 (safety), Phase 2 (efficacy
+signal), and Phase 3 (confirmatory efficacy) trials before a Biologics
+License Application (BLA) can be submitted.
+
+The FDA's Regenerative Medicine Advanced Therapy (RMAT) designation can
+accelerate review for therapies addressing serious conditions with
+preliminary clinical evidence of substantial improvement over existing
+options, offering more frequent FDA interaction and eligibility for
+priority review. In the EU, the equivalent accelerated pathway is PRIME
+(PRIority MEdicines) designation through the European Medicines Agency.
+
+A distinct regulatory challenge for gene editing therapies specifically
+is long-term safety monitoring: because edits are permanent, regulators
+typically require extended follow-up periods (often 15 years) to
+monitor for delayed adverse effects such as off-target editing
+consequences or insertional oncogenesis from viral vector integration,
+even after initial approval is granted.

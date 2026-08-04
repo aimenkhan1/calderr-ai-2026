@@ -1,0 +1,27 @@
+Frontier Model Risk Evaluation
+
+Capability evaluations attempt to measure whether a model has crossed a
+dangerous threshold before it is deployed, rather than after. Common
+evaluation categories include: cyberoffense capability (can the model
+find and exploit real vulnerabilities autonomously), biological and
+chemical weapons uplift (does the model meaningfully lower the barrier
+to acquiring dangerous biological or chemical agents compared to
+existing internet resources), autonomous replication and adaptation
+(can the model acquire resources, copy itself, and persist without
+human help), and persuasion/manipulation capability at scale.
+
+A key methodological challenge is that capability evaluations measure
+what a model CAN do under deliberate elicitation, which is a different
+question from what it WILL do under normal deployment conditions.
+Red-teaming exercises, where specialists deliberately try to elicit
+harmful behavior, are used to establish an upper bound on capability,
+while separate deployment-safety evaluations assess behavior under
+realistic usage patterns.
+
+Responsible scaling policies (RSPs) adopted by several frontier labs
+define capability thresholds that trigger additional safety
+requirements before further scaling is permitted — for example,
+requiring stronger cybersecurity protections once a model crosses a
+defined bioweapons-uplift threshold. Critics argue self-imposed RSPs
+lack external enforcement; proponents argue they establish norms faster
+than formal regulation can be written and passed.

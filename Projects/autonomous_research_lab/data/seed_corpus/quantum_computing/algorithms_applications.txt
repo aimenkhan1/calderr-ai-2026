@@ -1,0 +1,28 @@
+Quantum Algorithms and Realistic Near-Term Applications
+
+Shor's algorithm, which factors large integers exponentially faster
+than the best known classical algorithms, is the most famous quantum
+algorithm because it threatens the security of RSA and elliptic-curve
+cryptography — but running it on cryptographically relevant key sizes
+requires a fault-tolerant quantum computer with millions of physical
+qubits, which does not yet exist. This is the primary driver behind
+"post-quantum cryptography" standardization efforts, which aim to
+deploy classical encryption algorithms believed to resist quantum
+attack well before large-scale fault-tolerant quantum computers arrive.
+
+Grover's algorithm offers a quadratic (not exponential) speedup for
+unstructured search problems, which is a smaller advantage but applies
+to a broader class of problems and requires far fewer qubits than
+Shor's algorithm to become practically relevant.
+
+In the current "noisy intermediate-scale quantum" (NISQ) era, before
+full fault tolerance is achieved, the most actively pursued near-term
+applications are quantum simulation of molecular and material systems
+(where the exponential complexity of simulating quantum systems on
+classical computers is a natural fit for a quantum computer, particularly
+for problems in catalysis and battery materials research) and certain
+optimization problems via variational quantum algorithms, which use a
+classical optimizer in a feedback loop with a shallow quantum circuit.
+Claims of "quantum advantage" on NISQ hardware remain contested, since
+classical algorithms have repeatedly been improved to match specific
+claimed quantum speedups after the fact.

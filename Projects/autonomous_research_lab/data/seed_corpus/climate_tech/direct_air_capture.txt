@@ -1,0 +1,29 @@
+Direct Air Capture: Technology and Economics
+
+Direct air capture (DAC) removes carbon dioxide directly from ambient
+air, as opposed to point-source capture, which captures CO2 at
+concentrated emission sources like power plants. Two dominant DAC
+approaches exist. Liquid solvent DAC uses a hydroxide solution to
+chemically bind CO2 from air passed through the solvent, then applies
+heat (typically requiring temperatures above 800°C) to release
+concentrated CO2 and regenerate the solvent. Solid sorbent DAC instead
+uses a solid material with chemically reactive surfaces that bind CO2
+at ambient temperature, then releases it under a combination of mild
+heat and vacuum.
+
+Energy intensity is the central economic constraint. Because atmospheric
+CO2 concentration is roughly 420 parts per million — far lower than at a
+power plant flue — DAC requires processing enormous volumes of air per
+ton of CO2 captured, and both approaches require significant thermal or
+electrical energy for the regeneration step. Current cost estimates
+range widely, from roughly $250 to $600 per ton of CO2 captured for
+first-of-a-kind commercial facilities, with cost-reduction roadmaps
+targeting closer to $100-150 per ton as manufacturing scales and
+next-generation sorbents improve capture efficiency.
+
+Captured CO2 has two primary end uses: permanent geological
+sequestration in deep saline aquifers or depleted oil reservoirs
+(generating carbon removal credits), or utilization in synthetic fuel
+production, concrete curing, or enhanced oil recovery — though the last
+of these is contested as a legitimate climate solution since it
+typically produces more oil to be burned.
