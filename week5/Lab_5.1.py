@@ -1,7 +1,5 @@
 """
 LAB 5.1 - TYPED MESSAGE BUS
-============================
-Requirement:
   "Build a message-passing backbone for multi-agent systems. Define 4
    typed Pydantic message schemas (TaskRequest, TaskResult, ErrorReport,
    Handoff). Implement a simple in-memory message bus. Build 3 agents
@@ -15,6 +13,7 @@ between agents is ONE of the 4 typed message classes below. The
 "bus" is just a small in-memory post office: agents drop typed
 messages into it, and it delivers them to whoever the message says
 it's addressed to.
+
 
 The 3 agents built here:
   - Coordinator : hands out work and makes the final call
@@ -35,29 +34,18 @@ from pydantic import BaseModel, Field, ValidationError
 import random
 
 
-# ============================================================
-# PART 1 - THE 4 TYPED MESSAGE SCHEMAS
-#    These are the ONLY things allowed to travel on the bus.
-#    Every one of them has a `sender` and `recipient` so the
-#    bus knows who sent it and who should get it.
-# ============================================================
 
 class TaskRequest(BaseModel):
-    """
-    Sent when one agent wants another agent to do something.
-    Example: Coordinator asks Worker to process a task.
-    """
+
     sender: str
     recipient: str
     task_id: str
     description: str
-    priority: int = Field(ge=1, le=5)   # 1 = low, 5 = urgent. Must be 1-5, nothing else.
+    priority: int = Field(ge=1, le=5)   # 1 = low, 5 = urgent. Must be 1-5,
 
 
 class TaskResult(BaseModel):
-    """
-    Sent back when a task was completed successfully.
-    """
+
     sender: str
     recipient: str
     task_id: str
@@ -66,7 +54,6 @@ class TaskResult(BaseModel):
 
 
 class ErrorType(str, Enum):
-    """A fixed list of error categories - like a dropdown, not free text."""
     TIMEOUT = "timeout"
     INVALID_INPUT = "invalid_input"
     TOOL_FAILURE = "tool_failure"
@@ -74,11 +61,7 @@ class ErrorType(str, Enum):
 
 
 class ErrorReport(BaseModel):
-    """
-    Sent instead of a TaskResult when something went wrong.
-    This is how an agent says "I couldn't do it" in a structured way,
-    instead of just crashing or returning a vague error string.
-    """
+
     sender: str
     recipient: str
     task_id: str
@@ -88,12 +71,7 @@ class ErrorReport(BaseModel):
 
 
 class Handoff(BaseModel):
-    """
-    Sent when one agent passes ongoing work to another agent -
-    NOT a brand new task, but "here, you take it from here."
-    Example: Coordinator hands a completed-but-unverified result
-    to the Validator to get double-checked.
-    """
+
     sender: str
     recipient: str
     task_id: str
@@ -101,21 +79,14 @@ class Handoff(BaseModel):
     payload: dict   # whatever context the next agent needs to continue
 
 
-# ============================================================
-# PART 2 - THE MESSAGE BUS
-#    A simple in-memory "post office". Agents register with it
-#    under a name. Sending a message means: look up the
-#    recipient by name, and call their `.receive()` method.
-# ============================================================
 
-# The bus will only ever accept these 4 types - anything else is refused.
 ALLOWED_MESSAGE_TYPES = (TaskRequest, TaskResult, ErrorReport, Handoff)
 
 
 class MessageBus:
     def __init__(self):
-        self._agents: dict[str, "Agent"] = {}   # name -> agent object
-        self.message_log: list[BaseModel] = []   # keeps every message ever sent, for the audit trail
+        self._agents: dict[str, "Agent"] = {}   
+        self.message_log: list[BaseModel] = [] 
 
     def register(self, agent: "Agent") -> None:
         """An agent joins the bus under its own name."""
@@ -123,12 +94,7 @@ class MessageBus:
         agent.bus = self   # so the agent can call self.bus.send(...) later
 
     def send(self, message: BaseModel) -> None:
-        """
-        THE CORE RULE OF THIS LAB:
-        only one of the 4 typed messages may ever be sent.
-        Anything else (a raw string, a dict, a random object) is
-        rejected right here, before it ever reaches an agent.
-        """
+
         if not isinstance(message, ALLOWED_MESSAGE_TYPES):
             raise TypeError(
                 f"MessageBus only accepts typed messages "
@@ -144,15 +110,9 @@ class MessageBus:
         print(f"  [bus] {message.sender} -> {message.recipient}  ({type(message).__name__})")
         recipient.receive(message)
 
-
-# ============================================================
-# PART 3 - THE 3 AGENTS
-#    Every agent only talks through bus.send(...) and only ever
-#    receives one of the 4 typed messages in .receive().
-# ============================================================
+#
 
 class Agent:
-    """Small shared base so every agent has a name + a bus reference."""
     def __init__(self, name: str):
         self.name = name
         self.bus: Optional[MessageBus] = None
@@ -162,10 +122,7 @@ class Agent:
 
 
 class Coordinator(Agent):
-    """
-    Hands out work, and makes the final call once a Worker's
-    result comes back validated (or reports failure if it doesn't).
-    """
+
     def __init__(self):
         super().__init__("Coordinator")
         self.final_results: dict[str, BaseModel] = {}
@@ -200,21 +157,17 @@ class Coordinator(Agent):
             self.final_results[message.task_id] = message
 
         elif isinstance(message, TaskResult) is False and hasattr(message, "task_id"):
-            # (Validator's final TaskResult also lands here - handled below)
+            # Validator's final TaskResult also lands here 
             pass
 
     def receive_final(self, message: TaskResult) -> None:
-        """Called when the Validator sends back the final, checked result."""
         print(f"  [Coordinator] Task {message.task_id} CONFIRMED: "
               f"'{message.output}' (confidence {message.confidence})")
         self.final_results[message.task_id] = message
 
 
 class Worker(Agent):
-    """
-    Does the actual task. Randomly fails sometimes, on purpose, to
-    prove the ErrorReport path works and nothing crashes.
-    """
+
     def __init__(self):
         super().__init__("Worker")
 
@@ -242,11 +195,7 @@ class Worker(Agent):
 
 
 class Validator(Agent):
-    """
-    Double-checks a Worker's result before the Coordinator treats
-    it as final. Always approves in this simple lab, but the
-    structure is here for you to add real validation logic later.
-    """
+
     def __init__(self):
         super().__init__("Validator")
 
@@ -260,16 +209,11 @@ class Validator(Agent):
                 output=message.payload["output"],
                 confidence=message.payload["confidence"],
             )
-            # NOTE: this goes through the normal bus.send(), but the
-            # Coordinator needs a way to tell "first result from Worker"
-            # apart from "final result from Validator" - see receive_final
-            # wiring below in run_demo().
+    
             self.bus.send(final)
 
 
-# ============================================================
-# PART 4 - WIRING IT ALL TOGETHER
-# ============================================================
+
 
 def run_demo():
     bus = MessageBus()
@@ -281,9 +225,7 @@ def run_demo():
     bus.register(worker)
     bus.register(validator)
 
-    # Small patch: route messages FROM Validator to Coordinator's
-    # receive_final() instead of its normal receive(), so we can
-    # tell "raw Worker result" apart from "validated final result".
+
     original_receive = coordinator.receive
     def coordinator_receive(message):
         if isinstance(message, TaskResult) and message.sender == "Validator":
@@ -302,11 +244,7 @@ def run_demo():
 
 
 def demonstrate_validation_error():
-    """
-    Proves the typing is actually enforced. We deliberately build a
-    broken message and show Pydantic refusing it BEFORE it could ever
-    reach bus.send() or any agent.
-    """
+
     print("\n--- Validation check #1: TaskRequest with bad priority ---")
     try:
         TaskRequest(
