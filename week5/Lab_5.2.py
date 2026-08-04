@@ -74,3 +74,52 @@ class FinalResult(BaseModel):
 
 
 
+
+CONFIDENCE_THRESHOLD = 0.6  #below this ot good enough
+
+
+class SpecialistA:   #reliable
+    name = "SpecialistA"
+
+    def process(self, request: TaskRequest) -> SpecialistResponse:
+        time.sleep(0.05)
+        return SpecialistResponse(
+            agent_name=self.name,
+            task_id=request.task_id,
+            output=f"[{self.name}] Solid answer for: {request.description}",
+            confidence=round(random.uniform(0.75, 0.95), 2),
+        )
+
+
+class SpecialistB:   #timeout 
+
+    name = "SpecialistB"
+
+    def process(self, request: TaskRequest) -> SpecialistResponse:
+        if random.random() < 0.5:
+            # simulate a hung call that never comes back in time
+            raise TimeoutError(f"{self.name} did not respond in time.")
+        time.sleep(0.05)
+        return SpecialistResponse(
+            agent_name=self.name,
+            task_id=request.task_id,
+            output=f"[{self.name}] Answer for: {request.description}",
+            confidence=round(random.uniform(0.7, 0.9), 2),
+        )
+
+
+class SpecialistC:   #low confidence
+
+    name = "SpecialistC"
+
+    def process(self, request: TaskRequest) -> SpecialistResponse:
+        time.sleep(0.05)
+        return SpecialistResponse(
+            agent_name=self.name,
+            task_id=request.task_id,
+            output=f"[{self.name}] Uncertain answer for: {request.description}",
+            confidence=round(random.uniform(0.25, 0.55), 2),   # almost always below threshold
+        )
+
+
+
