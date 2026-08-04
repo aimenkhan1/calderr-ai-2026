@@ -121,3 +121,60 @@ def run_debate(topic: str, claim: str,
 
 
 
+def verify_no_recency_bias():
+    print("===================================================================")
+    print("SCENARIO A: Proposer has STRONG arguments, Challenger has WEAK ones")
+    print("(Challenger still speaks LAST - if the Arbiter favored recency,")
+    print(" it would wrongly pick the Challenger anyway)")
+    print("===================================================================")
+
+    verdict_a = run_debate(
+        topic="Should the company adopt a 4-day work week?",
+        claim="Yes - a 4-day work week improves productivity.",
+        proposer_args=[
+            Argument(text="A 2024 controlled trial across 60 companies showed a 5% "
+                           "revenue increase with no productivity loss.", evidence_strength=0.9),
+            Argument(text="Employee turnover dropped 15% in trial companies.", evidence_strength=0.85),
+        ],
+        challenger_args=[
+            Argument(text="Some people just don't like change.", evidence_strength=0.1),
+            Argument(text="It might not work here, who knows.", evidence_strength=0.15),
+        ],
+    )
+
+    assert verdict_a.winner == "Proposer", (
+        "FAILURE: Arbiter picked the Challenger despite weaker arguments - "
+        "this suggests a recency bias (favoring whoever spoke last)."
+    )
+    print("\n✓ PASSED: Proposer won despite Challenger speaking last - "
+          "proves the Arbiter is NOT just favoring the most recent speaker.\n")
+
+    print("======================================================================")
+    print("SCENARIO B: Proposer has WEAK arguments, Challenger has STRONG ones")
+    print("(Here the Challenger SHOULD win, on merit - not because it spoke last)")
+    print("======================================================================")
+
+    verdict_b = run_debate(
+        topic="Should we migrate the database to a new provider this quarter?",
+        claim="Yes - migrate now.",
+        proposer_args=[
+            Argument(text="The new provider seems nice.", evidence_strength=0.1),
+        ],
+        challenger_args=[
+            Argument(text="Migration during peak season historically causes 20+ hours "
+                           "of downtime based on last year's incident report.", evidence_strength=0.9),
+            Argument(text="The current contract has 8 months left with an early-exit "
+                           "penalty of $50,000.", evidence_strength=0.85),
+        ],
+    )
+
+    assert verdict_b.winner == "Challenger", (
+        "FAILURE: Arbiter picked the Proposer despite much weaker arguments."
+    )
+    print("\n✓ PASSED: Challenger won on merit - and critically, this is the SAME "
+          "outcome recency bias would have predicted, which is exactly why "
+          "Scenario A was necessary to prove the rule is actually about quality.\n")
+
+
+if __name__ == "__main__":
+    verify_no_recency_bias()
