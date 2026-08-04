@@ -17,7 +17,11 @@ class Argument(BaseModel):
     evidence_strength: float = Field(ge=0.0, le=1.0)
 
 
-
+class Proposal(BaseModel):
+    sender: str = "Proposer"
+    topic: str
+    claim: str
+    arguments: List[Argument]
 
 
 class Challenge(BaseModel):
