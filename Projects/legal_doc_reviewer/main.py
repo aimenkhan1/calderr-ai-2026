@@ -7,7 +7,6 @@ and exports a Markdown report.
 
 import sys
 import time
-import requests
 from graph import run_review
 from models import Severity, RiskLevel
 
