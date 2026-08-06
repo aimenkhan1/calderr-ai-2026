@@ -10,5 +10,3 @@ if __name__ == "__main__":
     with open("graph.png", "wb") as f:
         f.write(png_bytes)
     print("Saved graph.png")
-    we
-    
