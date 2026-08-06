@@ -110,3 +110,5 @@ class _JudgeSynthesis(BaseModel):
     summary: str
     confidence: float = Field(..., ge=0.0, le=1.0)
     dissent_log: List[str] = Field(default_factory=list)
+
+
