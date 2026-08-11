@@ -12,13 +12,8 @@ from enum import Enum
 from typing import List, Optional
 from pydantic import BaseModel, Field
 
-
+#constrainted to pick from this list rather than inventing domains with no evidence to retrieve.
 class ResearchDomain(str, Enum):
-    """
-    Supported domains. The seed document store (data/seed_corpus/) has one
-    folder per domain, so the Domain Classifier is constrained to pick from
-    this list rather than inventing domains with no evidence to retrieve.
-    """
     AI_SAFETY = "ai_safety"
     BIOTECHNOLOGY = "biotechnology"
     CLIMATE_TECH = "climate_tech"
@@ -31,26 +26,25 @@ class DomainClassification(BaseModel):
     confidence: float = Field(..., ge=0.0, le=1.0)
     rationale: str
 
-
+#one specialist per sub-question, each with a persona and expertise description
 class SpecialistSpec(BaseModel):
-    """One dynamically-assembled evidence agent's assignment."""
     persona_name: str = Field(..., description="e.g. 'RegulatoryAnalyst', 'TechnicalFeasibilityExpert'")
     expertise_description: str
     sub_question: str = Field(..., description="The specific sub-question this specialist will investigate")
 
-
+#assembly plan is a list of specialists with rationale for why they were chosen, and the domain they are investigating.
 class AssemblyPlan(BaseModel):
     domain: ResearchDomain
     specialists: List[SpecialistSpec] = Field(..., min_length=3, max_length=5)
     assembly_rationale: str
 
-
+#hypothesis just guesses the answer to the main research question
 class Hypothesis(BaseModel):
     statement: str
     rationale: str
     confidence: float = Field(..., ge=0.0, le=1.0)
 
-
+#evidence finding is the output of a single specialist agent, with confidence and sources cited. It may be challenged by the Critic Agent, which can lower its confidence and add a weakness note.
 class EvidenceFinding(BaseModel):
     finding_id: str = Field(..., description="Short unique id, e.g. 'ev-1'")
     persona_name: str
@@ -100,7 +94,6 @@ class PeerReviewReport(BaseModel):
 
 
 class ResearchReport(BaseModel):
-    """Final published output."""
     question: str
     domain: ResearchDomain
     assembly_plan: AssemblyPlan
@@ -119,7 +112,8 @@ class ErrorReport(BaseModel):
     recoverable: bool = True
 
 
-# ── Internal schemas used only for structured LLM calls ──────────────────
+
+#these schemas are used for the internal message bus between agents, and are not part of the final report. They are used to pass messages between agents in a structured way, and to ensure that all messages are validated against a schema.
 
 class _EvidenceOutput(BaseModel):
     summary: str
