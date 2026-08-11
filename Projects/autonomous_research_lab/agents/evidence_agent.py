@@ -12,7 +12,6 @@ from rag.document_store import DocumentStore
 
 
 class EvidenceAgent:
-    """Not a subclass-per-domain — one class, reconfigured per SpecialistSpec at runtime."""
 
     def __init__(self, spec: SpecialistSpec, domain: str, store: DocumentStore, finding_id: str):
         self.spec = spec
