@@ -2,6 +2,7 @@
 Multi-turn Agent with Accumulating State
 Demonstrates TypedDict + Annotated reducers for state that grows over turns.
 """
+#its just structure placeholder code for now, but it will be a multi-turn agent that accumulates state over turns, using TypedDict and Annotated reducers to manage the growing state.
 
 from typing_extensions import TypedDict
 from typing import List, Annotated
