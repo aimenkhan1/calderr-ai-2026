@@ -1,0 +1,153 @@
+# Research Engine — Autonomous Research Workflow Engine
+
+A LangGraph-powered research engine that plans its own research strategy,
+executes three research threads in genuine parallel (each its own compiled
+subgraph), synthesizes the findings, checks itself for completeness, and
+loops back to fill in gaps before publishing a final report.
+
+---
+
+## What It Does
+
+Give it a research topic, and the engine will:
+
+- **Plan** — Break the topic into 3 distinct research angles (or, on a repeat
+  pass, into 3 targeted queries addressing previously found gaps)
+- **Research in Parallel** — Run all 3 angles concurrently, each through its own
+  compiled subgraph (`search → summarize`), using real Tavily web search and
+  real Groq summarization
+- **Synthesize** — Combine all findings so far into one coherent draft
+- **Check for Gaps** — Ask an LLM judge whether the synthesis is comprehensive
+- **Loop if Needed** — If gaps are found (and the iteration cap hasn't been hit),
+  plan additional targeted research and repeat
+- **Publish** — Once complete, generate a polished final report
+
+---
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Orchestration | LangGraph `StateGraph` |
+| Parallel Execution | `concurrent.futures.ThreadPoolExecutor` running 3 compiled subgraphs |
+| Web Search | Tavily (real, live results) |
+| LLM | Groq (`llama-3.1-8b-instant`) — planning, summarizing, synthesizing, judging, writing |
+| Language | Python 3.11+ |
+
+---
+
+## Project Structure
+
+```
+research_engine/
+│
+├── research_engine.py         # Main graph + subgraph + CLI
+├── run_five_reports.py        # Batch runner - produces 5 reports on complex topics
+├── generate_graph_visual.py   # Produces graph.png
+├── requirements.txt
+├── reports/                   # Generated - one .md file per topic
+├── graph.png                  # Generated architecture diagram
+└── README.md                  # This file
+```
+
+---
+
+## Architecture
+
+```
+                    plan_research
+                         │
+                 parallel_research
+              (3 concurrent subgraph
+               threads: search→summarize)
+                         │
+                    synthesize
+                         │
+                   gap_analysis
+                    ┌────┴────┐
+                complete     gaps
+                    │          │
+            generate_report   └──► (loop back to plan_research,
+                    │               targeting the identified gaps)
+                 publish
+                    │
+                   END
+```
+
+### The parallel subgraph, in detail
+Each of the 3 research angles is processed by its own compiled LangGraph
+(`research_thread_graph`), invoked independently inside a `ThreadPoolExecutor`:
+
+```
+sub_question ──► search (Tavily) ──► summarize (Groq) ──► summary
+```
+All 3 threads run concurrently, not sequentially — this is genuine parallel
+subgraph execution, verifiable in LangSmith traces as three overlapping
+child runs under the same parent invocation.
+
+---
+
+## Setup & Run
+
+### 1. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+
+### 2. Add API keys to `.env`
+```
+GROQ_API_KEY=your_groq_key
+TAVILY_API_KEY=your_tavily_key
+LANGCHAIN_API_KEY=your_langsmith_key      # optional, for tracing
+LANGCHAIN_TRACING_V2=true
+LANGCHAIN_PROJECT=research-engine
+```
+
+### 3. Run one topic interactively
+```bash
+python main.py
+```
+
+### 4. Run the full batch (5 reports deliverable)
+```bash
+python simulation.py
+```
+Produces `reports/1_....md` through `reports/5_....md`, plus a summary
+printed to the terminal.
+
+### 5. Generate the architecture diagram
+```bash
+python graph.py
+```
+
+---
+
+## Features
+
+| Feature | Description |
+|---------|-------------|
+|  True Parallelism | 3 subgraphs run concurrently via threads, not a disguised sequential loop |
+|  Self-Correcting Loop | Gap analysis can send the engine back to research further, up to a capped number of rounds |
+|  Adaptive Planning | The second research round (if triggered) targets the *specific* gaps found, not a generic repeat |
+|  Real Data | Live Tavily search results, not model-only background knowledge |
+|  Traceable | With `LANGCHAIN_TRACING_V2=true`, every planning/research/synthesis/judging step is visible on LangSmith |
+
+---
+
+## Notes
+
+- `MAX_ITERATIONS = 2` caps the loop at one initial round plus one gap-filling
+  round, keeping runtime and API cost predictable — increase it for more
+  thorough (and slower/costlier) research
+- The parallel subgraph pattern (`research_thread_graph`) is fully reusable:
+  it's compiled once at import time and invoked independently per thread, so
+  it carries no shared mutable state between concurrent calls
+- Findings accumulate across loop iterations via an `Annotated[list, operator.add]`
+  reducer on `research_findings`, so a gap-filling round adds to, rather than
+  replaces, the first round's evidence
+
+---
+
+## Built By
+
+Aiman Nadeem Khan
