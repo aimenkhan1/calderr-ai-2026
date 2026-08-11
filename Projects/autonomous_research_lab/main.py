@@ -25,7 +25,7 @@ def main():
     elapsed = time.time() - start
 
     if state["errors"]:
-        print("⚠️  Some agents failed (pipeline degraded gracefully):")
+        print("  Some agents failed (pipeline degraded gracefully):")
         for e in state["errors"]:
             print(f"   - {e.agent_name}: {e.error_type} — {e.message}")
         print()
