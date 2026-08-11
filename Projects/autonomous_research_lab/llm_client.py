@@ -9,6 +9,7 @@ import time
 from typing import Type, TypeVar, Callable, Optional
 
 from pydantic import BaseModel, ValidationError
+from langsmith import traceable
 from dotenv import load_dotenv
 
 load_dotenv()  
@@ -19,14 +20,11 @@ DEFAULT_MODEL = os.environ.get("GROQ_MODEL", "llama-3.3-70b-versatile")
 _client = None
 
 
+@traceable
 def get_client():
     global _client
     if _client is None:
         from groq import Groq
-        from langchain_groq import ChatGroq
-
-        llm = ChatGroq( model="llama-3.3-70b-versatile",temperature=0.3)
-
         api_key = os.environ.get("GROQ_API_KEY")
         if not api_key:
             raise RuntimeError(
