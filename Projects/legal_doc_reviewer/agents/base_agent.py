@@ -50,6 +50,3 @@ class BaseLegalAgent(ABC):
             f"Challenge raised: {challenge_rationale}"
         )
         return structured_completion(system_prompt, user_prompt, _ChallengeResponse)
-
-
-eee

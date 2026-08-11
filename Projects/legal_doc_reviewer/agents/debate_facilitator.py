@@ -52,4 +52,3 @@ class DebateFacilitator:
         return result.challenges
 
 
-ee

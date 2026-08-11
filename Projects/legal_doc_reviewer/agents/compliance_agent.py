@@ -28,5 +28,3 @@ class ComplianceAgent(BaseLegalAgent):
             "what the text actually supports."
         )
 
-
-ee

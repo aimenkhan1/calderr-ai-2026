@@ -64,5 +64,3 @@ class JudgeAgent:
             dissent_log=synthesis.dissent_log,
         )
 
-
-ee

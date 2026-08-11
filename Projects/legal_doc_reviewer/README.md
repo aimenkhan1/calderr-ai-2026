@@ -132,7 +132,7 @@ Create a `.env` file in the project root:
 GROQ_API_KEY=your_groq_api_key_here
 GROQ_MODEL=llama-3.3-70b-versatile
 
-cdddddd
+
 ```
 Get a free Groq key at console.groq.com
 

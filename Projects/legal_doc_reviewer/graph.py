@@ -1,19 +1,6 @@
 """
 LangGraph wiring for the Multi-Agent Legal Document Reviewer.
 
-Graph shape:
-
-           ┌── RiskAgent ─────────┐
-           ├── ComplianceAgent ───┤
-   START ──┼── LiabilityAgent ────┼──► DebateRound ──► JudgeAgent ──► END
-           └── ObligationsAgent ──┘
-
-DebateRound = Facilitator raises challenges -> targeted agents respond
-(upheld or revised) -> findings updated in place before Judge sees them.
-
-Failure handling: any specialist that errors is logged as an
-ErrorReport and excluded from consensus rather than crashing the run
-(same principle as every other Week 5 project).
 """
 
 import operator
@@ -52,7 +39,7 @@ def _specialist_node(agent):
     def node(state: ReviewState) -> dict:
         try:
             return {"reviews": [agent.review(state["contract_text"])]}
-        except Exception as e:  # noqa: BLE001 — one agent's failure must not crash the graph
+        except Exception as e: 
             return {"errors": [ErrorReport(agent_name=agent.name, error_type=type(e).__name__,
                                             message=str(e))]}
     return node
@@ -70,7 +57,6 @@ def _response_node(state: ReviewState) -> dict:
     reviews = state["reviews"]
     challenges = state["challenges"]
 
-    # Flatten all findings, indexed by finding_id, for in-place updates
     findings_by_id = {f.finding_id: f for r in reviews for f in r.findings}
 
     resolved_challenges = []
