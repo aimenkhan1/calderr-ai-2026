@@ -6,7 +6,7 @@ Large accounts (by seats requested or monthly value) pause for human approval
 via LangGraph's interrupt() mechanism. State is checkpointed to SQLite, so a
 paused onboarding can be resumed at any time.
 """
-q
+
 import os
 import uuid
 from datetime import datetime
