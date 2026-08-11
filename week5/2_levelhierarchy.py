@@ -1,10 +1,8 @@
 """
-WEDNESDAY - 2-LEVEL HIERARCHY
+2-LEVEL HIERARCHY
 ==============================
 Build: Executive Supervisor -> [Research Lead, Engineering Lead] -> 4 Worker Agents
-Study: how state flows across hierarchy levels WITHOUT LEAKING CONTEXT
 
-THE CORE IDEA THIS FILE IS TESTING:
 Each level should only ever see what it strictly needs - nothing more.
   - A Worker should NEVER see the Executive's original goal, or what
     the OTHER worker on its team is doing.
@@ -12,7 +10,6 @@ Each level should only ever see what it strictly needs - nothing more.
     Executive - it must first condense its team's results into ONE
     summary. The Executive should never see 4 individual worker
     outputs, only 2 team-level summaries.
-
 This mirrors a real company org chart: the CEO doesn't read every
 engineer's Slack messages - they get a summary from the Engineering
 Lead. An individual engineer doesn't see the CEO's full strategy doc -
