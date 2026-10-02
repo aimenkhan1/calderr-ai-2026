@@ -6,7 +6,7 @@ conversation, in windows of 5 interactions (1-5, 6-10, 11-15, 16-20). If the
 agent is genuinely learning from corrections, this line should trend
 downward that visual trend IS the "proof" this project is about.
 """
-dd
+
 from __future__ import annotations
 
 from typing import List, Tuple
